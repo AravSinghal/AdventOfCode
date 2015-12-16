@@ -32,7 +32,6 @@ def get_wire_value(wire = ''):
     else:
         res = perform_operation(val)
         apply_wire(wire, res)
-        print(wire + ": " + str(res))
         return res
 
 def perform_operation(operation = ''):
@@ -92,10 +91,24 @@ def end_process():
 
     result = wires['a']
 
-with open("input.txt") as file:
-    for line in file:
-        process(line.rstrip())
-    
+
+def process_input():
+    with open("input.txt") as file:
+        for line in file:
+            process(line.rstrip())
+
+def main():
+    global result
+    # First pass
+    process_input()
     end_process()
+
+    # Second pass
+    process_input()
+    wires['b'] = result
+    end_process()
+
     copy_to_clipboard(result)
     print(result)
+
+main()

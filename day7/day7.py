@@ -93,7 +93,7 @@ def end_process():
 
 
 def process_input():
-    with open("input.txt") as file:
+    with open("day7/input.txt") as file:
         for line in file:
             process(line.rstrip())
 
